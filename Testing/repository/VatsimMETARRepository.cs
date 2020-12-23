@@ -16,7 +16,8 @@ namespace repository
 
         }
 
-        //place data retrieval methods here
+        // Place data retrieval methods here
+        // Also declare the methods in domain/VatsimMETARAggregate/VatsimMETARRepository.cs
         // public async Task<IEnumerable<VatsimMETAR>> GetAll() {
         //     return await _context.VatsimMETARs;
         // }
