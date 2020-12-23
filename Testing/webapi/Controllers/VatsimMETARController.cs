@@ -35,7 +35,7 @@ namespace webapi.Controllers
             return await _unitOfWork.METARs.GetAll();
         }
 
-        // GET: api/VatsimMETAR/5
+        // GET: api/VatsimMETAR/KSAF
         [HttpGet("{id}")]
         public async Task<ActionResult<VatsimMETAR>> GetVatsimMETAR(string id)
         {
@@ -49,7 +49,7 @@ namespace webapi.Controllers
             return vatsimMETAR;
         }
 
-        // PUT: api/VatsimMETAR/5
+        // PUT: api/VatsimMETAR/KSAF
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -88,10 +88,10 @@ namespace webapi.Controllers
                 }
             }
 
-            return CreatedAtAction("GetVatsimMETAR", new { id = vatsimMETAR.RetreivedTimeStamp }, vatsimMETAR);            
+            return CreatedAtAction("GetVatsimMETAR", new { id = vatsimMETAR.ICAO }, vatsimMETAR);            
         }
 
-        // DELETE: api/VatsimMETAR/5
+        // DELETE: api/VatsimMETAR/KSAF
         [HttpDelete("{id}")]
         public async Task<ActionResult<VatsimMETAR>> DeleteVatsimMETAR(string id)
         {

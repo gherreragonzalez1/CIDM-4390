@@ -36,12 +36,20 @@ namespace webapi.Controllers
             return await _unitOfWork.Stations.GetAll();
         }
 
-        // GET: api/NOAAStations/5
+        [Route("state/{state}")]
+        [HttpGet("{state}")]
+        public IEnumerable<NOAAStation> GetByState(string state) {
+            return _unitOfWork.Stations.GetStationsByState(state);
+        }
+
+        // GET: api/NOAAStations/KSAF
         [HttpGet("{id}")]
         public async Task<ActionResult<NOAAStation>> GetNOAAStation(string id)
         {
             var noaaStation = await _unitOfWork.Stations.Get(id);
             // var mETARStation = await _context.Stations.FindAsync(id);
+
+            _logger.LogInformation($"{id} Station Called");
 
             if (noaaStation == null)
             {
@@ -51,7 +59,7 @@ namespace webapi.Controllers
             return noaaStation;
         }
 
-        // PUT: api/VatsimMETAR/5
+        // PUT: api/NOAAStations/KSAF
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -92,7 +100,7 @@ namespace webapi.Controllers
             return CreatedAtAction("GetMETARStation", new { id = noaaStation.ICAO }, noaaStation);
         }
 
-        // DELETE: api/NOAAStations/5
+        // DELETE: api/NOAAStations/KSAF
         [HttpDelete("{id}")]
         public async Task<ActionResult<NOAAStation>> DeleteNOAAStation(string id)
         {
@@ -103,8 +111,9 @@ namespace webapi.Controllers
                 return NotFound();
             }
 
-            //do deletion
+            // do deletion
             _unitOfWork.Stations.Delete(noaaStation);
+            _logger.LogInformation($"{noaaStation} deleted");
 
             return noaaStation;
         }

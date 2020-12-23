@@ -23,7 +23,7 @@ namespace repository
         {
             return await _context.Set<T>().ToListAsync();
         }
-
+ 
         public async Task Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
