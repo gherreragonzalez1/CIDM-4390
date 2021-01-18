@@ -13,7 +13,7 @@ namespace repository
 
         public VatsimMETARRepository(WebApiDbContext context) : base(context)
         {
-
+            
         }
 
         // Place data retrieval methods here

@@ -5,7 +5,7 @@ using domain.VatsimMETARAggregate;
 
 namespace repository
 {
-    public class UnitOfWork :IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly WebApiDbContext _context;
         public INOAAStationRepository Stations { get; }

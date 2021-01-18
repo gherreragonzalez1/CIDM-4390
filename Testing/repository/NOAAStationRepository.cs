@@ -18,6 +18,6 @@ namespace repository
         // Also declare the methods in domain/NOAAStationAggregate/INOAAStationRepository.cs
         public IEnumerable<NOAAStation> GetStationsByState(string StateAbbreviation) {
             return _context.Stations.Where(x => x.StateAbbreviation == StateAbbreviation);
-        }
+        } 
     }
 }
