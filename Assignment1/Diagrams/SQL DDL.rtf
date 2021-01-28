@@ -1,0 +1,111 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 AmericanTypewriter;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red14\green110\blue109;\red251\green2\blue255;
+\red255\green255\blue255;\red0\green0\blue0;\red251\green0\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c2209\c769\c100000;\cssrgb\c93\c50309\c50313;\cssrgb\c100000\c25279\c100000;
+\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;\cssrgb\c100000\c938\c99999;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 CREATE DATABASE\cf0  \cf3 GroceriesDB\
+
+\f1 \cf0 \
+
+\f0 \cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE IF NOT EXISTS \cf4 \cb5 \expnd0\expndtw0\kerning0
+`User`\cf7 \cb1 \kerning1\expnd0\expndtw0 \
+\cf0 (\
+\cf3 user_id \cf2 VARCHAR \cf6 (30)\cf2  NOT NULL UNIQUE\cf6 ,\cf2 \
+\cf3 Password \cf2 VARCHAR \cf6 (16)\cf2  NOT NULL\cf6 ,\cf2 \
+\cf3 LastName \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 FirstName \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 Email \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 Phone \cf2 VARCHART (\cf6 16)\cf2  NOT NULL,\
+PRIMARY KEY \cf6 (CustomerID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 Address\
+\cf0 (\
+\cf3 Street \cf2 VARCHAR \cf0 (255) \cf2 NOT NULL\cf6 ,\cf2 \
+\cf3 StreetNumber \cf2 INT NOT NULL\cf6 ,\cf2 \
+\cf3 ZipCode \cf2 INT NOT NULL\cf6 ,\
+\cf3 City \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 State \cf2 VARCHAR \cf6 (2)\cf2  NOT NULL\cf6 ,\
+\cf3 CustomerID \cf2 VARCHAR \cf0 (8)\cf2  NOT NULL UNIQUE\cf6 ,\
+\cf2 FOREIGN KEY \cf6 (CustomerID) \cf2 REFERENCES \cf6 Customer(CustomerID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 Order\
+\cf0 (\
+\cf3 OrderID \cf2 INT\cf0  \cf2 NOT NULL UNIQUE\cf6 ,\cf2 \
+\cf3 OrderDate \cf2 DATETIME NOT NULL\cf6 ,\cf2 \
+\cf3 OrderTotal \cf2 DOUBLE NOT NULL\cf6 ,\
+\cf3 DriverID \cf2 INT NOT NULL UNIQUE\cf6 ,\
+\cf3 TransactionID \cf2 INT NOT NULL UNIQUE,\
+PRIMARY KEY \cf6 (OrderID),\
+\cf2 FOREIGN KEY \cf6 (DriverID) \cf2 REFERENCES \cf6 AssignedDriver(DriverID),\
+\cf2 FOREIGN KEY \cf6 (TransactionID) \cf2 REFERENCES \cf6 Bill(TransactionID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 Bill\
+\cf0 (\cf6 \
+\cf3 TransactionID \cf2 INT NOT NULL UNIQUE,\
+\cf3 IssueDate \cf2 DATETIME NOT NULL\cf6 ,\
+\cf3 Total \cf2 DOUBLE NOT NULL\cf6 ,\
+\cf3 OrderID \cf2 INT NOT NULL UNIQUE\cf6 ,\cf2 \
+PRIMARY KEY \cf6 (TransactionID),\
+\cf2 FOREIGN KEY \cf6 (OrderID) \cf2 REFERENCES \cf6 Order(OrderID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 Driver\
+\cf0 (\cf6 \
+\cf3 DriverID \cf2 INT NOT NULL UNIQUE\cf6 ,\cf2 \
+\cf3 DriverName \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 DriverCar \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 DriverPlates \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 DriverLocation \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\cf2 \
+PRIMARY KEY \cf6 (DriverID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 OrderItem\
+\cf0 (\cf6 \
+\cf3 Quantity \cf2 INT\cf6 ,\cf2 \
+\cf3 PricePerUnit \cf2 DOUBLE NOT NULL\cf6 ,\
+\cf3 OrderID \cf2 INT NOT NULL UNIQUE\cf6 ,\
+\cf3 ProductID \cf2 INT NOT NULL UNIQUE\cf6 ,\
+\cf2 FOREIGN KEY \cf6 (OrderID) \cf2 REFERENCES \cf6 Order(OrderID),\
+\cf2 FOREIGN KEY \cf6 (ProductID) \cf2 REFERENCES \cf6 Product(ProductID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 Product\
+\cf0 (\cf6 \
+\cf3 ProductID \cf2 INT NOT NULL UNIQUE\cf6 ,\
+\cf3 ProductName \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 ProductDescription \cf2 VARCHAR \cf6 (255),\
+\cf2 PRIMARY KEY \cf6 (ProductID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 ShoppingCart\
+\cf0 (\cf6 \
+\cf3 CartID \cf2 INT NOT NULL UNIQUE\cf6 ,\
+\cf3 CartSessionID \cf2 INT NOT NULL UNIQUE\cf6 ,\
+\cf3 CartQty \cf2 INT\cf6 ,\
+\cf2 PRIMARY KEY \cf6 (CartID)\cf0 \
+);\
+\
+\cf2 USE\cf0  \cf3 GroceriesDB\cf0 \
+\cf2 CREATE TABLE\cf0  \cf7 BillingInfo\
+\cf0 (\cf6 \
+\cf3 Issuer \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf6 ,\
+\cf3 CardNumber \cf2 INT NOT NULL\cf6 ,\
+\cf3 ExpirationDate \cf2 DATE NOT NULL\cf6 ,\
+\cf3 BillingAddress \cf2 VARCHAR \cf6 (255)\cf2  NOT NULL\cf0 \
+);\
+}
