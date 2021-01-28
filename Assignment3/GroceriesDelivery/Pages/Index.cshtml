@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Groceries Delivery Online</h1>
+    
+    <div>
+        <a asp-page="/Customer/Create" class="btn btn-primary">Sign Up as Customer</a>
+        <a asp-page="/Driver/Create" class="btn btn-primary">Sign Up as Driver</a>
+        <a asp-page="Admin/Index" class="btn btn-danger">Manage App (Admins Only)</a>
+    </div>
+    <p></p>
+    <img src="~/groceries.png" style="width: 300px; height: 250px;"/>
+</div>

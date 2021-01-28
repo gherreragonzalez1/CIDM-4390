@@ -1,0 +1,48 @@
+@page
+@model GroceriesDelivery.Pages_Driver.IndexModel
+
+@{
+    ViewData["Title"] = "Manage Drivers";
+}
+
+<h1>Manage Drivers</h1>
+
+<p>
+    <a asp-page="Create">Create New Driver</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Driver[0].DriverID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Driver[0].DriverName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Driver[0].DriverPhone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Driver) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DriverPhone)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.DriverID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.DriverID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.DriverID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

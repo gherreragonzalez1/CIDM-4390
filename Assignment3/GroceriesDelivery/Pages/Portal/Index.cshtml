@@ -1,0 +1,11 @@
+@page
+@model AdminModel
+@{
+    ViewData["Title"] = "Thank you for Registering!";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <p>Now that you're registered, you can place an order!</p>
+    <a asp-page="/Order/Create" class="btn btn-danger">Place an Order</a>
+</div>
