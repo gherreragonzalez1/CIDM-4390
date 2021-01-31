@@ -10,7 +10,7 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AddColumn<byte[]>(
                 name: "RowVersion",
                 table: "Department",
-                type: "rowversion",
+                type: "BLOB",
                 rowVersion: true,
                 nullable: true);
         }

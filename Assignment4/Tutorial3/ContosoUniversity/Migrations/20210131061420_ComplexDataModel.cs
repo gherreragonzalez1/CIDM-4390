@@ -10,41 +10,31 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
                 table: "Student",
-                type: "nvarchar(50)",
+                type: "TEXT",
                 maxLength: 50,
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
+                oldType: "TEXT",
                 oldMaxLength: 50,
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "FirstName",
                 table: "Student",
-                type: "nvarchar(50)",
+                type: "TEXT",
                 maxLength: 50,
                 nullable: false,
                 defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
+                oldType: "TEXT",
                 oldMaxLength: 50,
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Title",
-                table: "Course",
-                type: "nvarchar(50)",
-                maxLength: 50,
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
                 oldNullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "DepartmentID",
                 table: "Course",
-                type: "int",
+                type: "INTEGER",
                 nullable: false,
                 defaultValue: 0);
 
@@ -52,11 +42,11 @@ namespace ContosoUniversity.Migrations
                 name: "Instructor",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    LastName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    HireDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,8 +57,8 @@ namespace ContosoUniversity.Migrations
                 name: "CourseAssignment",
                 columns: table => new
                 {
-                    InstructorID = table.Column<int>(type: "int", nullable: false),
-                    CourseID = table.Column<int>(type: "int", nullable: false)
+                    InstructorID = table.Column<int>(type: "INTEGER", nullable: false),
+                    CourseID = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -91,12 +81,12 @@ namespace ContosoUniversity.Migrations
                 name: "Department",
                 columns: table => new
                 {
-                    DepartmentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    DepartmentID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
                     Budget = table.Column<decimal>(type: "money", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    InstructorID = table.Column<int>(type: "int", nullable: true)
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    InstructorID = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -113,8 +103,8 @@ namespace ContosoUniversity.Migrations
                 name: "OfficeAssignment",
                 columns: table => new
                 {
-                    InstructorID = table.Column<int>(type: "int", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    InstructorID = table.Column<int>(type: "INTEGER", nullable: false),
+                    Location = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -180,32 +170,22 @@ namespace ContosoUniversity.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
                 table: "Student",
-                type: "nvarchar(50)",
+                type: "TEXT",
                 maxLength: 50,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
+                oldType: "TEXT",
                 oldMaxLength: 50);
 
             migrationBuilder.AlterColumn<string>(
                 name: "FirstName",
                 table: "Student",
-                type: "nvarchar(50)",
+                type: "TEXT",
                 maxLength: 50,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
+                oldType: "TEXT",
                 oldMaxLength: 50);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "Title",
-                table: "Course",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(50)",
-                oldMaxLength: 50,
-                oldNullable: true);
         }
     }
 }

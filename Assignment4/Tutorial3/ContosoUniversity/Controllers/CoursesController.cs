@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 
-// dotnet aspnet-codegenerator controller -name CoursesController -m Course -dc SchoolContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
 namespace ContosoUniversity.Controllers
 {
     public class CoursesController : Controller
@@ -23,10 +22,7 @@ namespace ContosoUniversity.Controllers
         // GET: Courses
         public async Task<IActionResult> Index()
         {
-            var courses = _context.Courses
-                .Include(c => c.Department)
-                .AsNoTracking();
-            return View(await courses.ToListAsync());
+            return View(await _context.Courses.ToListAsync());
         }
 
         // GET: Courses/Details/5

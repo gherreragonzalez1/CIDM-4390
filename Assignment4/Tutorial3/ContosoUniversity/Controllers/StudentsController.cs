@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 
-// dotnet aspnet-codegenerator controller -name StudentsController -m Student -dc SchoolContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
 namespace ContosoUniversity.Controllers
 {
     public class StudentsController : Controller
@@ -78,10 +77,10 @@ namespace ContosoUniversity.Controllers
             }
 
             var student = await _context.Students
-            .Include(s => s.Enrollments)
-                .ThenInclude(e => e.Course)
-            .AsNoTracking()
-            .FirstOrDefaultAsync(m => m.ID == id);
+                .Include(s => s.Enrollments)
+                    .ThenInclude(e => e.Course)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (student == null)
             {
@@ -120,6 +119,22 @@ namespace ContosoUniversity.Controllers
                 ModelState.AddModelError("", "Unable to save changes. " +
                     "Try again, and if the problem persists " +
                     "see your system administrator.");
+            }
+            return View(student);
+        }
+
+        // GET: Students/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student = await _context.Students.FindAsync(id);
+            if (student == null)
+            {
+                return NotFound();
             }
             return View(student);
         }
@@ -168,7 +183,6 @@ namespace ContosoUniversity.Controllers
             var student = await _context.Students
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
-
             if (student == null)
             {
                 return NotFound();
@@ -206,6 +220,11 @@ namespace ContosoUniversity.Controllers
                 //Log the error (uncomment ex variable name and write a log.)
                 return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
             }
+        }
+
+        private bool StudentExists(int id)
+        {
+            return _context.Students.Any(e => e.ID == id);
         }
     }
 }
