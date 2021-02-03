@@ -1,12 +1,4 @@
-# CIDM 4390
-
-## /Testing
-
-A testing project from Dr. Babb's repository.
-
-## /Assignment4
-
-Includes [Assignment 4](https://github.com/gherreragonzalez1/CIDM4390/tree/master/Assignment4) following detailed tutorials on web apps using Razor Pages and MVC.
+# CIDM 4390 - Software Systems Development
 
 A few examples of some software engineering concepts.
 
