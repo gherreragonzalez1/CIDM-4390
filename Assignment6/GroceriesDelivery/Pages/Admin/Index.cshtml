@@ -1,0 +1,12 @@
+@page
+@model AdminModel
+@{
+    ViewData["Title"] = "Manage Application";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+        <a asp-page="/Customer/Index" class="btn btn-danger">Manage Customers</a>
+        <a asp-page="/Driver/Index" class="btn btn-danger">Manage Drivers</a>
+        <a asp-page="/Order/Index" class="btn btn-danger">Manage Orders</a>
+    </div>
